@@ -38,17 +38,17 @@ directive provided by this module :
     .. code-block:: rest
 
         .. documentedlist::
-            :listobject: full.importable.path.of.the.list
+            :listobject: full.importable.path.of.thelist
 
 This extension will import the list as :
 
     .. code-block:: python
 
-        from full.importable.path.of.the import list
+        from full.importable.path.of import thelist
 
 For a usage example, see:
 
-https://github.com/chintal/koala/blob/public/koala/conventions/electronics.py
+https://github.com/chintal/koala/blob/public/koala/conventions/electronics.py#L28
 
 and the corresponding documentation generated at:
 
