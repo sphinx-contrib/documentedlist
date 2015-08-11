@@ -48,7 +48,7 @@ This extension will import the list as :
 
 For a usage example, see:
 
-https://github.com/chintal/tendril/blob/public/koala/conventions/electronics.py#L28
+https://github.com/chintal/tendril/blob/public/tendril/conventions/electronics.py#L28
 
 and the corresponding documentation generated at:
 
