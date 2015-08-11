@@ -23,7 +23,7 @@ description for each, and Sphinx is able to use this extension to
 'autogenerate' the table in the documentation.
 
 Based heavily on slides from Doug Hellman's PyCon talk,
-`http://www.slideshare.net/doughellmann/better-documentation-through-automation-creating-docutils-sphinx-extensions`_
+http://www.slideshare.net/doughellmann/better-documentation-through-automation-creating-docutils-sphinx-extensions
 
 Installation & Usage
 --------------------
@@ -48,11 +48,11 @@ This extension will import the list as :
 
 For a usage example, see:
 
-`https://github.com/chintal/koala/blob/public/koala/conventions/electronics.py`_
+https://github.com/chintal/koala/blob/public/koala/conventions/electronics.py
 
 and the corresponding documentation generated at:
 
-`http://koala.longclaw/doc/userdoc/conventions/gedasymbols.html#device-classes`_
+http://koala.longclaw/doc/userdoc/conventions/gedasymbols.html#device-classes
 
 License
 -------
