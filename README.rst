@@ -48,11 +48,11 @@ This extension will import the list as :
 
 For a usage example, see:
 
-https://github.com/chintal/koala/blob/public/koala/conventions/electronics.py#L28
+https://github.com/chintal/tendril/blob/public/koala/conventions/electronics.py#L28
 
 and the corresponding documentation generated at:
 
-http://koala.longclaw/doc/userdoc/conventions/gedasymbols.html#device-classes
+http://tendril.chintal.in/userdoc/conventions/gedasymbols.html#device-classes
 
 License
 -------
