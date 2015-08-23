@@ -52,7 +52,7 @@ https://github.com/chintal/tendril/blob/public/tendril/conventions/electronics.p
 
 and the corresponding documentation generated at:
 
-http://tendril.chintal.in/userdoc/conventions/gedasymbols.html#device-classes
+http://tendril.chintal.in/userdoc/conventions/gedasymbols/#device-classes
 
 License
 -------
