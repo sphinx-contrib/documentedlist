@@ -46,13 +46,36 @@ This extension will import the list as :
 
         from full.importable.path.of import thelist
 
+Optionally, the headers to be displayed in the table can also be
+specified. The number of columns displayed is 2 by default, and if
+more columns are desired, the headers should be manually specified
+with as many columns as needed, for example
+
+
+foo.py :
+
+    .. code-block:: python
+
+        lst = [
+           ["John", "Doe", "john@example.com"]
+        ]
+
+example.rst :
+
+    .. code-block:: rest
+
+        .. documentedlist::
+            :listobject: foo.lst
+            :header: "First Name" "Last Name" Email
+
+
 For a usage example, see:
 
 https://github.com/chintal/tendril/blob/public/tendril/conventions/electronics.py#L28
 
 and the corresponding documentation generated at:
 
-http://tendril.chintal.in/userdoc/conventions/gedasymbols/#device-classes
+http://tendril.chintal.in/doc/userdoc/conventions/gedasymbols/#device-classes
 
 License
 -------

@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+
+# Copyright (c) 2015, Chintalagiri Shashank
+#
+# This Sphinx Extension is made available under the BSD 2-clause License. See
+# sphinxcontrib's LICENSE file for the full text.
 
 import shlex
 from docutils import nodes
@@ -13,8 +19,8 @@ class DocumentedListDirective(Table):
     def run(self):
         if self.content:
             error = self.state_machine.reporter.error(
-                """The documentedlist directive does not know what to do with
-                the provided content""",
+                """The DocumentedList directive does not know what to do with
+                provided content""",
                 nodes.literal_block(self.block_text, self.block_text),
                 line=self.lineno
             )
@@ -24,7 +30,7 @@ class DocumentedListDirective(Table):
         memberpath = self.options.get('listobject', None)
         if memberpath is None:
             error = self.state_machine.reporter.error(
-                "The documentedlist needs to be given the list object"
+                "DocumentedList needs to be given the list object"
                 "containing the documentations as the :listobject: parameter",
                 nodes.literal_block(self.block_text, self.block_text),
                 line=self.lineno
@@ -37,7 +43,7 @@ class DocumentedListDirective(Table):
             member = getattr(mod, memberstr)
         except ImportError:
             error = self.state_machine.reporter.error(
-                "Documentedlist encountered an error importing the member "
+                "DocumentedList encountered an error importing the member "
                 "specified by " + memberpath,
                 nodes.literal_block(self.block_text, self.block_text),
                 line=self.lineno
