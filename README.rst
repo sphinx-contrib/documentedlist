@@ -80,5 +80,5 @@ http://tendril.chintal.in/doc/userdoc/conventions/gedasymbols/#device-classes
 License
 -------
 
-This Sphinx Extension is made available under the BSD 3-clause License. See the
-LICENSE file for the full text.
+This Sphinx Extension is made available under the BSD 2-clause License. See
+sphinxcontrib's LICENSE file for the full text.
