@@ -14,7 +14,9 @@ from docutils.parsers.rst.directives.tables import Table
 class DocumentedListDirective(Table):
 
     option_spec = {'listobject': directives.unchanged,
-                   'header': directives.unchanged}
+                   'header': directives.unchanged,
+                   'spantolast': directives.unchanged,
+                   'descend': directives.flag}
 
     def run(self):
         if self.content:
@@ -50,29 +52,71 @@ class DocumentedListDirective(Table):
             )
             return [error]
 
-        table_headers = shlex.split(self.options.get('header', 'Item Description'))
+        self.descend = 'descend' in self.options
+        self.spantolast = 'spantolast' in self.options
+        self.headers = shlex.split(self.options.get('header', 'Item Description'))
+        self.max_cols = len(self.headers)
+        self.col_widths = self.get_column_widths(self.max_cols)
+
         table_body = member
-        max_cols = len(table_headers)
-
-        col_widths = self.get_column_widths(max_cols)
-
         title, messages = self.make_title()
-        table_node = self.build_table(table_body,
-                                      col_widths,
-                                      table_headers)
+        table_node = self.build_table(table_body)
         self.add_name(table_node)
         if title:
             table_node.insert(0, title)
         return [table_node] + messages
 
-    @staticmethod
-    def build_table(table_data, col_widths, headers):
+    def get_rows(self, table_data):
+        rows = []
+        groups = []
+        for row in table_data:
+            sub_table_data = None
+            if self.descend:
+                for elem in row:
+                    if isinstance(elem, list):
+                        sub_table_data = row.pop(row.index(elem))
+                        break
+            trow = nodes.row()
+            ncols = len(row)
+            for idx, cell in enumerate(row):
+                if self.spantolast and \
+                        ncols < self.max_cols and idx == ncols - 1:
+                    morecols = self.max_cols - ncols
+                    entry = nodes.entry(morecols=morecols)
+                else:
+                    entry = nodes.entry()
+                para = nodes.paragraph(text=unicode(cell))
+                entry += para
+                trow += entry
+            if self.descend and sub_table_data:
+                subtgroup = nodes.tgroup(cols=len(self.headers))
+                subtgroup.extend(
+                    nodes.colspec(
+                        colwidth=col_width, colname='c' + str(idx)
+                    ) for idx, col_width in enumerate(self.col_widths)
+                )
+                subthead = nodes.thead()
+                subtgroup += subthead
+                subthead += trow
+                subtbody = nodes.tbody()
+                subtgroup += subtbody
+                sub_rows, sub_groups = self.get_rows(sub_table_data)
+                subtbody.extend(sub_rows)
+                groups.append(subtgroup)
+                groups.extend(sub_groups)
+            else:
+                rows.append(trow)
+        return rows, groups
+
+    def build_table(self, table_data):
         table = nodes.table()
-        tgroup = nodes.tgroup(cols=len(headers))
+        tgroup = nodes.tgroup(cols=len(self.headers))
         table += tgroup
 
-        tgroup.extend(nodes.colspec(colwidth=col_width) for
-                      col_width in col_widths)
+        tgroup.extend(
+            nodes.colspec(colwidth=col_width, colname='c' + str(idx))
+            for idx, col_width in enumerate(self.col_widths)
+        )
 
         thead = nodes.thead()
         tgroup += thead
@@ -80,25 +124,18 @@ class DocumentedListDirective(Table):
         row_node = nodes.row()
         thead += row_node
         row_node.extend(nodes.entry(h, nodes.paragraph(text=h))
-                        for h in headers)
+                        for h in self.headers)
 
         tbody = nodes.tbody()
         tgroup += tbody
 
-        rows = []
-        for row in table_data:
-            trow = nodes.row()
-            for cell in row:
-                entry = nodes.entry()
-                para = nodes.paragraph(text=unicode(cell))
-                entry += para
-                trow += entry
-            rows.append(trow)
+        rows, groups = self.get_rows(table_data)
         tbody.extend(rows)
+        table.extend(groups)
 
         return table
 
 
 def setup(app):
     app.add_directive('documentedlist', DocumentedListDirective)
-    return {'version': '0.1'}
+    return {'version': '0.3'}
