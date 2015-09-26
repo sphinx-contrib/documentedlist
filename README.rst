@@ -9,11 +9,45 @@ objects of immutable data (possibly enums, though python 3.4 enums
 are not supported yet).
 
 In the source code, each list item, instead of being just it's native
-data type, should be replaced by a tuple of two elements. The second
-element of the tuple should be a string which provides a description
-for the item.
+data type, should be replaced by a tuple of two elements. In the
+simpest application, the second element of the tuple should be a string
+which provides a description for the item.
 
-In the first use of this extension, the aim is to document a list of
+The following options are also included to enable slightly more complex
+use cases :
+
+
+:header: The number of columns displayed is 2 by default, with titles
+    "Item" and "Description". This option allows you to add a custom
+    header and change the number of columns in the table::
+
+        .. documentedlist::
+            :listobject: some.list.object
+            :header: "First Name" "Last Name" Email
+
+
+:spantolast: If this flag is present, the last column of any row with
+    an insufficient number of columns will spread to span all remaining
+    columns. This would typically be used to insert headings within
+    the table::
+
+        .. documentedlist::
+            :listobject: some.list.object
+            :spantolast:
+
+
+:descend: This flag allows you to construct a relatively complex table.
+    with subsections. Any row containing a list as one of it's cells is
+    expanded into a sub-table (specifically, a docutils tgroup). The
+    list is popped from the original row, and each element of the list
+    is turned into a row::
+
+        .. documentedlist::
+            :listobject: some.list.object
+            :descend:
+
+
+In the first use of this extension, the aim was to document a list of
 supported device classes (each of which is a string). This was
 originally specified in the python code as a list, and the same list
 with descriptions was manually maintained (or, in reality, left
@@ -28,9 +62,12 @@ http://www.slideshare.net/doughellmann/better-documentation-through-automation-c
 Installation & Usage
 --------------------
 
-To use this module, place the ``documentedlist.py`` file somewhere in
-the ``PYTHONPATH`` that Sphinx is configured to use, or add the git
-checkout folder to the ``PYTHONPATH`` in Sphinx's ``conf.py``.
+This extension is part of the sphinxcontrib repository and can be
+installed from pypi :
+
+    .. code-block:: bash
+
+        pip install sphinxcontrib-documentedlist
 
 In the .rst file where the table should appear, insert the Sphinx
 directive provided by this module :
@@ -46,36 +83,18 @@ This extension will import the list as :
 
         from full.importable.path.of import thelist
 
-Optionally, the headers to be displayed in the table can also be
-specified. The number of columns displayed is 2 by default, and if
-more columns are desired, the headers should be manually specified
-with as many columns as needed, for example
+For a basic usage example, see:
 
+:Python: https://github.com/chintal/tendril/blob/public/tendril/conventions/electronics.py#L28
+:Generated: https://github.com/chintal/tendril/blob/public/doc/userdoc/conventions/gedasymbols.rst#symbol-attributes
 
-foo.py :
+For a more complex example of the extension's usage, including the
+:header:, :spantolast:, and :descend: options, see:
 
-    .. code-block:: python
+:Python: https://github.com/chintal/tendril/blob/public/tendril/utils/config.py#L625
+:ReST: https://github.com/chintal/tendril/blob/public/tendril/utils/config.py#L31
+:Generated: http://tendril.chintal.in/doc/apidoc/tendril.utils.config/#configuration-options
 
-        lst = [
-           ["John", "Doe", "john@example.com"]
-        ]
-
-example.rst :
-
-    .. code-block:: rest
-
-        .. documentedlist::
-            :listobject: foo.lst
-            :header: "First Name" "Last Name" Email
-
-
-For a usage example, see:
-
-https://github.com/chintal/tendril/blob/public/tendril/conventions/electronics.py#L28
-
-and the corresponding documentation generated at:
-
-http://tendril.chintal.in/doc/userdoc/conventions/gedasymbols/#device-classes
 
 License
 -------
