@@ -6,6 +6,7 @@
 # sphinxcontrib's LICENSE file for the full text.
 
 import shlex
+from six import text_type
 from docutils import nodes
 from docutils.parsers.rst import directives
 from docutils.parsers.rst.directives.tables import Table
@@ -17,6 +18,14 @@ class DocumentedListDirective(Table):
                    'header': directives.unchanged,
                    'spantolast': directives.unchanged,
                    'descend': directives.flag}
+
+    def __init__(self, *args, **kwargs):
+        super(DocumentedListDirective, self).__init__(*args, **kwargs)
+        self.descend = None
+        self.spantolast = None
+        self.headers = None
+        self.max_cols = None
+        self.col_widths = None
 
     def run(self):
         if self.content:
@@ -85,7 +94,7 @@ class DocumentedListDirective(Table):
                     entry = nodes.entry(morecols=morecols)
                 else:
                     entry = nodes.entry()
-                para = nodes.paragraph(text=unicode(cell))
+                para = nodes.paragraph(text=text_type(cell))
                 entry += para
                 trow += entry
             if self.descend and sub_table_data:
@@ -138,4 +147,4 @@ class DocumentedListDirective(Table):
 
 def setup(app):
     app.add_directive('documentedlist', DocumentedListDirective)
-    return {'version': '0.3'}
+    return {'version': '0.4'}

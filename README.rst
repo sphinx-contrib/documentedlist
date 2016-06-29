@@ -85,14 +85,15 @@ This extension will import the list as :
 
 For a basic usage example, see:
 
-:Python: https://github.com/chintal/tendril/blob/public/tendril/conventions/electronics.py#L28
-:Generated: https://github.com/chintal/tendril/blob/public/doc/userdoc/conventions/gedasymbols.rst#symbol-attributes
+:Python: https://github.com/chintal/tendril/blob/master/tendril/conventions/electronics.py#L28
+:ReST: https://raw.githubusercontent.com/chintal/tendril/master/doc/userdoc/conventions/gedasymbols.rst (Device Classes)
+:Generated: http://tendril.chintal.in/doc/userdoc/conventions/gedasymbols/#device-classes
 
 For a more complex example of the extension's usage, including the
 :header:, :spantolast:, and :descend: options, see:
 
-:Python: https://github.com/chintal/tendril/blob/public/tendril/utils/config.py#L625
-:ReST: https://github.com/chintal/tendril/blob/public/tendril/utils/config.py#L31
+:Python: https://github.com/chintal/tendril/blob/master/tendril/utils/config.py#L791
+:ReST: https://github.com/chintal/tendril/blob/master/tendril/utils/config.py#L67
 :Generated: http://tendril.chintal.in/doc/apidoc/tendril.utils.config/#configuration-options
 
 
