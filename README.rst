@@ -62,7 +62,7 @@ http://www.slideshare.net/doughellmann/better-documentation-through-automation-c
 Installation & Usage
 --------------------
 
-This extension is part of the sphinxcontrib repository and can be
+This extension is part of the sphinxcontrib namespace and can be
 installed from pypi :
 
     .. code-block:: bash
