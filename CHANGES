@@ -1,0 +1,35 @@
+
+Changelog for DocumentedList Sphinx Extension
+=============================================
+
+
+### v0.4
+
+29-06-2016  Chintalagiri Shashank   <shashank@chintal.in>
+
+    * Minor corrections, to example links in README and removing the
+    python2 only unicode() call.
+    * Moved support files into the github repository.
+
+    
+### v0.3
+
+27-09-2015	Chintalagiri Shashank	<shashank@chintal.in>
+
+	* Added the :descend: and :spantolast: flags.
+
+
+### v0.2
+
+07-09-2015	Chintalagiri Shashank	<shashank@chintal.in>
+
+	* Integrated changes from Maximilian Hils (mhils@github) supporting
+	configurable header and consequently column count.
+	* Updated documentation to reflect the new allowed usage.
+
+
+### v0.1
+
+29-08-2015	Chintalagiri Shashank	<shashank@chintal.in>
+
+	* Initial inclusion in the sphinxcontrib repository.
