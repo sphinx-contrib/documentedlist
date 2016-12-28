@@ -65,7 +65,7 @@ class DocumentedListDirective(Table):
         self.spantolast = 'spantolast' in self.options
         self.headers = shlex.split(self.options.get('header', 'Item Description'))
         self.max_cols = len(self.headers)
-        self.col_widths = self.get_column_widths(self.max_cols)
+        _, self.col_widths = self.get_column_widths(self.max_cols)
 
         table_body = member
         title, messages = self.make_title()
