@@ -3,6 +3,13 @@ Changelog for DocumentedList Sphinx Extension
 =============================================
 
 
+### v0.5
+
+30-12-2016  Chintalagiri Shashank   <shashank@chintal.in>
+
+    * Fix problem with docutils changes to get_column_widths in 13.1.
+
+
 ### v0.4
 
 29-06-2016  Chintalagiri Shashank   <shashank@chintal.in>
@@ -11,7 +18,7 @@ Changelog for DocumentedList Sphinx Extension
     python2 only unicode() call.
     * Moved support files into the github repository.
 
-    
+
 ### v0.3
 
 27-09-2015	Chintalagiri Shashank	<shashank@chintal.in>

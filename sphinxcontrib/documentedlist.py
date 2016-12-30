@@ -65,7 +65,15 @@ class DocumentedListDirective(Table):
         self.spantolast = 'spantolast' in self.options
         self.headers = shlex.split(self.options.get('header', 'Item Description'))
         self.max_cols = len(self.headers)
-        _, self.col_widths = self.get_column_widths(self.max_cols)
+
+        # This works around am apparantly poorly documented change in docutils
+        # v13.1. I _think_ this should work with both versions, but please file
+        # a bug on github if it doesn't.
+        rval = self.get_column_widths(self.max_cols)
+        if len(rval) == 2 and isinstance(rval[1], list):
+            self.col_widths = rval[1]
+        else:
+            self.col_widths = rval
 
         table_body = member
         title, messages = self.make_title()

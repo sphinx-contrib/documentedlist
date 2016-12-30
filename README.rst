@@ -102,3 +102,9 @@ License
 
 This Sphinx Extension is made available under the BSD 2-clause License. See
 sphinxcontrib's LICENSE file for the full text.
+
+Thanks
+------
+
+  - Maximilian Hils (github @mhils)
+
