@@ -11,7 +11,7 @@ requires = ['Sphinx>=0.6', 'six']
 
 setup(
     name='sphinxcontrib-documentedlist',
-    version='0.5',
+    version='0.6',
     url='https://github.com/chintal/sphinxcontrib-documentedlist',
     download_url='http://pypi.python.org/pypi/sphinxcontrib-documentedlist',
     license='BSD',
